@@ -13,13 +13,15 @@
 						</button>
 						<div class="menu">
 							<ul class="nav-menu">
-								<li class="page_item page-item-1 current_page_item focus">
-									<a href="/afficheRecherche">Rechercher
-										un article</a>
+								
+								<li class="page_item page-item-1 current_page_item focus" >
+									<form method="get" class="formSearch" action="/afficheRechercheParMotCle">
+										<input name="motCle" placeholder="Rechercher un article" style="margin-right: 10px;"/>
+										<button type="submit" class="searchBtn">Chercher</button>
+									</form>
 								</li>
 								<li class="page_item page-item-2">
-									<a href="/accederAuPanier">Panier</a>
-								</li>
+								<button onclick="window.location.href='/accederAuPanier'">Voir votre panier</button>								</li>
 							</ul>
 						</div>
 					</nav>

@@ -1310,7 +1310,10 @@ button.menu-toggle:after {
  overflow:hidden;
  max-height:0;
  -webkit-transition:all,ease,.8s;
- transition:all,ease,.8s
+ transition:all,ease,.8s;
+ display:flex;
+ justify-content: space-between;
+ padding-top: 10px;
 }
 .handheld-navigation {
  clear:both
@@ -1319,7 +1322,9 @@ button.menu-toggle:after {
  margin:0
 }
 .handheld-navigation ul.menu li {
- position:relative
+ position:relative;
+ display: flex;
+ align-items: center;
 }
 .handheld-navigation ul.menu li button:after {
  -webkit-transition:all,ease,.9s;
@@ -1605,6 +1610,9 @@ button.menu-toggle:after {
  height:1em;
  line-height:1
 }
+.formSearch {
+    display: flex;
+}
 @media (min-width:768px) {
  table.shop_table_responsive tbody tr td,
  table.shop_table_responsive tbody tr th {
@@ -1642,7 +1650,7 @@ button.menu-toggle:after {
   width:73.9130434783%;
   float:left;
   margin-right:4.347826087%;
-  clear:both
+  clear:both;
  }
  .woocommerce-active .site-header .site-header-cart {
   width:21.7391304348%;
@@ -1961,7 +1969,8 @@ button.menu-toggle:after {
   list-style:none;
   margin:0;
   padding-left:0;
-  display:block
+  display:flex;
+  justify-content: space-between;
  }
  .main-navigation ul li,
  .secondary-navigation ul li {
@@ -2045,15 +2054,19 @@ button.menu-toggle:after {
   clear:both
  }
  .main-navigation div.menu {
-  display:block
- }
+  display:flex;
+  justify-content: space-between;
+  padding-top: 10px;
+}
  .main-navigation ul.menu,
  .main-navigation ul.nav-menu {
   max-height:none;
   overflow:visible;
-  margin-left:-1em;
   -webkit-transition:none;
-  transition:none
+  transition:none;
+  display:flex;
+  justify-content: space-between;
+  padding-top: 10px;
  }
  .main-navigation ul.menu>li>a,
  .main-navigation ul.nav-menu>li>a {
@@ -2063,7 +2076,7 @@ button.menu-toggle:after {
  .main-navigation ul.menu>li.page_item_has_children:hover:after,
  .main-navigation ul.nav-menu>li.menu-item-has-children:hover:after,
  .main-navigation ul.nav-menu>li.page_item_has_children:hover:after {
-  display:block
+  display:flex;
  }
  .main-navigation ul.menu ul,
  .main-navigation ul.nav-menu ul {
