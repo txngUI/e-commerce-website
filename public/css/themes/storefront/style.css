@@ -488,7 +488,7 @@ body {
  display:none
 }
 .site-branding .logo {
- margin:0
+ margin:0;
 }
 .site-main {
  margin-bottom:2.617924em
@@ -1613,6 +1613,12 @@ button.menu-toggle:after {
 .formSearch {
     display: flex;
 }
+#header {
+  padding: 0 50px;
+  background-color: #D3D3D3;
+  display: flex;
+  align-items: center;
+}
 @media (min-width:768px) {
  table.shop_table_responsive tbody tr td,
  table.shop_table_responsive tbody tr th {
@@ -1705,7 +1711,7 @@ button.menu-toggle:after {
   margin:0 0 0 .5407911001em!important;
   display:inline-block
  }
- .col-full {
+ .site-content, footer {
   max-width:66.4989378333em;
   margin-left:auto;
   margin-right:auto;
