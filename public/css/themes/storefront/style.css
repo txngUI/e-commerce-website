@@ -1611,7 +1611,7 @@ button.menu-toggle:after {
  line-height:1
 }
 .formSearch {
-    display: flex;
+  display: flex;
 }
 #header {
   padding: 0 50px;
@@ -1619,6 +1619,36 @@ button.menu-toggle:after {
   display: flex;
   align-items: center;
 }
+.container-paiement {
+  max-width: 50%;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 @media (min-width:768px) {
  table.shop_table_responsive tbody tr td,
  table.shop_table_responsive tbody tr th {

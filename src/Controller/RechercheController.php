@@ -41,9 +41,9 @@ class RechercheController extends AbstractController
     {
 		$query = $this->entityManager->createQuery("SELECT a FROM App\Entity\Catalogue\Article a "
 												  ." where a.titre like :motCle");
-		$query->setParameter("motCle", "%".$request->query->get("motCle")."%") ;
-		$query = $this->entityManager->createQuery("SELECT a FROM App\Entity\Catalogue\Article a "
-												  ." where a.titre like '%".addslashes($request->query->get("motCle"))."%'");
+												  
+		$query->setParameter("motCle", "%".$request->query->get("motCle")."%");
+		
 		$articles = $query->getResult();
 		return $this->render('recherche.html.twig', [
             'articles' => $articles,
