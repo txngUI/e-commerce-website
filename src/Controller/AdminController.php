@@ -200,7 +200,7 @@ class AdminController extends AbstractController
 			$form->handleRequest($request) ;
 			
 			if ($form->isSubmitted()) {
-				$entity = $form->getData() ;
+				$entity = $form->getData();
 				$this->entityManager->persist($entity);
 				$this->entityManager->flush();
 				return $this->redirectToRoute("adminMusiques") ;
