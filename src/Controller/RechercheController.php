@@ -15,6 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Catalogue\Livre;
 use App\Entity\Catalogue\Musique;
 use App\Entity\Catalogue\Piste;
+use App\Entity\Catalogue\Film;
 
 class RechercheController extends AbstractController
 {
