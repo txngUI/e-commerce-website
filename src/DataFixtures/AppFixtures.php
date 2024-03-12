@@ -149,11 +149,11 @@ class AppFixtures extends Fixture
 
 			// No country for old men
 			$entityFilm = new Film();
-			$entityFilm->setId(56299459);
+			$entityFilm->setId(562169459);
 			$entityFilm->setTitre("No country for old men");
 			$entityFilm->setRealisateur("Ethan Coen");
 			$entityFilm->setISBN("2212110685");
-			$entityFilm->SetDuree(new DateInterval('2H20M'));
+			$entityFilm->SetDuree(new DateInterval('PT2H20M'));
 			$entityFilm->setDateDeParution("23/01/2008");
 			$entityFilm->setPrix("10.90");
 			$entityFilm->setDisponibilite(1);
@@ -163,14 +163,14 @@ class AppFixtures extends Fixture
 			// $entityFilm
 			$entityFilm = new Film();
 			$entityFilm->setId(56299454);
-			$entityFilm->setTitre("$entityFilm");
-			$entityFilm->setRealisateur("Christopher Nolan");
+			$entityFilm->setTitre("Django Unchained");
+			$entityFilm->setRealisateur("Quentin Tarentino");
 			$entityFilm->setISBN("1234567890");
-			$entityFilm->setDuree(new DateInterval('2H30M'));
+			$entityFilm->setDuree(new DateInterval('PT2H30M'));
 			$entityFilm->setDateDeParution("01/01/2022");
 			$entityFilm->setPrix("12.50");
 			$entityFilm->setDisponibilite(1);
-			$entityFilm->setImage("/images/$entityFilm.jpg");
+			$entityFilm->setImage("/images/django.jpg");
 			$manager->persist($entityFilm);
 
 			// Interstellar
@@ -179,7 +179,7 @@ class AppFixtures extends Fixture
 			$entityFilm->setTitre("Interstellar");
 			$entityFilm->setRealisateur("Christopher Nolan");
 			$entityFilm->setISBN("2345678901");
-			$entityFilm->setDuree(new DateInterval('2H49M'));
+			$entityFilm->setDuree(new DateInterval('PT2H49M'));
 			$entityFilm->setDateDeParution("15/11/2014");
 			$entityFilm->setPrix("14.99");
 			$entityFilm->setDisponibilite(1);
@@ -192,7 +192,7 @@ class AppFixtures extends Fixture
 			$entityFilm->setTitre("Blade Runner");
 			$entityFilm->setRealisateur("Ridley Scott");
 			$entityFilm->setISBN("3456789012");
-			$entityFilm->setDuree(new DateInterval('1H57M'));
+			$entityFilm->setDuree(new DateInterval('PT1H57M'));
 			$entityFilm->setDateDeParution("25/06/1982");
 			$entityFilm->setPrix("9.99");
 			$entityFilm->setDisponibilite(1);
@@ -205,7 +205,7 @@ class AppFixtures extends Fixture
 			$entityFilm->setTitre("Blade Runner 2049");
 			$entityFilm->setRealisateur("Denis Villeneuve");
 			$entityFilm->setISBN("4567890123");
-			$entityFilm->setDuree(new DateInterval('2H44M'));
+			$entityFilm->setDuree(new DateInterval('PT2H44M'));
 			$entityFilm->setDateDeParution("06/10/2017");
 			$entityFilm->setPrix("16.99");
 			$entityFilm->setDisponibilite(1);
@@ -218,7 +218,7 @@ class AppFixtures extends Fixture
 			$entityFilm->setTitre("Inception");
 			$entityFilm->setRealisateur("Christopher Nolan");
 			$entityFilm->setISBN("6789012345");
-			$entityFilm->setDuree(new DateInterval('2H28M'));
+			$entityFilm->setDuree(new DateInterval('PT2H28M'));
 			$entityFilm->setDateDeParution("08/07/2010");
 			$entityFilm->setPrix("13.75");
 			$entityFilm->setDisponibilite(1);
