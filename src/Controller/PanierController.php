@@ -119,6 +119,10 @@ class PanierController extends AbstractController
 	#[Route('/viderPanier', name: 'viderPanier')]
 	public function viderPanierAction(Request $request): Response
 	{
-		return $this->render('panier.vide.html.twig');
+		$session = $request->getSession() ;
+		if (!$session->isStarted())
+			$session->start() ;
+		$session->remove("panier") ;
+		return $this->redirectToRoute('accederAuPanier');
 	}
 }

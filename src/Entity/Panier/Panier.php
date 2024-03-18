@@ -31,7 +31,7 @@ class Panier
 	{
 		return $this->lignesPanier;
 	}
-	
+
 	public function recalculer(): void
 	{
 		$it = $this->getLignesPanier()->getIterator();
