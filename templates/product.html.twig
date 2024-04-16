@@ -57,13 +57,13 @@
 										{% endfor %}
 										{% endif %}
 										{% if article.disponibilite > 0 %}
-											<form action="/ajouterLigne" method="post">
+											<form action="/ajouterLigne?id={{ article.id }}" method="post">
 											<label style="color:black">Le produit est en stock</label>
 											<input type="hidden" name="id" value={{article.getId}}>
 											<input type="submit" value="Ajouter au panier">
 										</form>
 										{% else %}
-											<form action="/ajouterLigne" method="post">
+											<form action="/ajouterLigne?id={{ article.id }}" method="post">
 											<label>Le produit n'est pas en stock</label>
 											<input type="hidden" name="id" value={{article.id}}>
 											<input type="submit" value="Ajouter au panier" disabled>
