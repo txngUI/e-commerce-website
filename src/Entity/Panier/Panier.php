@@ -4,16 +4,38 @@ namespace App\Entity\Panier;
 
 use ArrayObject;
 use App\Entity\Catalogue\Article;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
+#[ORM\Entity]
 class Panier
 {
+	#[ORM\Id]
+	#[ORM\GeneratedValue(strategy: "AUTO")]
+	#[ORM\Column(name: "id")]
+	private ?int $id = null;
+
     private float $total;
 
-    private ArrayObject $lignesPanier;
+	#[ORM\OneToMany(targetEntity: LignePanier::class, mappedBy: "panier", cascade: ["persist", "remove"])]
+    private Collection $lignesPanier;
+
+	public function getId(): ?int
+	{
+		return $this->id;
+	}
+
+	public function setId(int $id): static
+	{
+		$this->id = $id;
+
+		return $this;
+	}
 
 	public function __construct()
     {
-		$this->lignesPanier = new ArrayObject();
+		$this->lignesPanier = new ArrayCollection();
     }
 
 	public function setTotal(): void
@@ -27,11 +49,11 @@ class Panier
 		return $this->total;
     }
 	
-	public function getLignesPanier(): ?ArrayObject
+	public function getLignesPanier(): ?Collection
 	{
 		return $this->lignesPanier;
 	}
-
+	
 	public function recalculer(): void
 	{
 		$it = $this->getLignesPanier()->getIterator();
@@ -51,7 +73,8 @@ class Panier
 			$lp = new LignePanier() ;
 			$lp->setArticle($article) ; 
 			$lp->setQuantite(1) ;
-			$this->lignesPanier->append($lp) ;
+			$lp->setPanier($this) ;
+			$this->lignesPanier->add($lp) ;
 		}
 		else {
 			$lp->setQuantite($lp->getQuantite() + 1) ;
@@ -89,4 +112,3 @@ class Panier
 		}
 	}
 }
-

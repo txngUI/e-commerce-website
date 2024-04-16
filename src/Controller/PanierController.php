@@ -13,6 +13,7 @@ use Psr\Log\LoggerInterface;
 use App\Entity\Catalogue\Article;
 use App\Entity\Panier\Panier;
 use App\Entity\Panier\LignePanier;
+use App\Entity\Commande\Commande;
 
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -99,7 +100,7 @@ class PanierController extends AbstractController
 		if (!$session->isStarted())
 			$session->start() ;	
 		if ($session->has("panier"))
-			$this->panier = $session->get("panier") ;
+			$this->panier = $session->get("panier");
 		else
 			$this->panier = new Panier() ;
 		if (sizeof($this->panier->getLignesPanier()) === 0)
@@ -116,13 +117,25 @@ class PanierController extends AbstractController
 		return $this->render('commande.html.twig');
     }
 
-	#[Route('/viderPanier', name: 'viderPanier')]
-	public function viderPanierAction(Request $request): Response
-	{
-		$session = $request->getSession() ;
-		if (!$session->isStarted())
-			$session->start() ;
-		$session->remove("panier") ;
-		return $this->redirectToRoute('accederAuPanier');
-	}
+	#[Route('/enregistrerCommande', name: 'enregistrerCommande')]
+    public function enregistrerCommande(Request $request): Response
+    {
+		$session = $request->getSession();;
+
+		$commande = new Commande($request->request->get("name"), 
+								$request->request->get("surname"), 
+								$request->request->get("email"), 
+								$request->request->get("phone"), 
+								$request->request->get("address") . " " . $request->request->get("city") . " " . $request->request->get("cp"),
+								new \DateTime(), 
+								$request->request->get("amount"), 
+								$session->get("panier"));
+
+		$this->entityManager->persist($commande);
+		$this->entityManager->flush();
+
+		$session->set("panier", new Panier());
+
+		return $this->redirectToRoute('afficheRecherche');
+    }
 }

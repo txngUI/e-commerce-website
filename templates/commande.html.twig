@@ -1,46 +1,81 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-				<header id="header" class="col-full">
-					<div id="logo">
-						<h1 class="site-title" style="margin-right:50px;display:flex;align-items:center;">Amazaun</h1>
+	<body>
+		<div class="container-paiement">
+			<h2>Confirmation du paiement</h2>
+			<form id="payment-form" action="/enregistrerCommande" method="POST">
+				<div class="name-part" style="display: flex;
+						  flex-direction: row;
+						  justify-content: space-between;
+						  align-items: center;margin-bottom:20px;">
+					<label for="name-surname">Nom complet :</label>
+					<input type="text" id="surname" placeholder="Prénom" name="surname" style="width:40%" required>
+					<input type="text" id="name" placeholder="Nom" name="name" style="width:40%" required>
+				</div>
+				<div class="email" style="display: flex;
+						  flex-direction: row;
+						  justify-content: space-between;
+						  align-items: center;margin-bottom:20px;">
+					<label for="email">Email :</label>
+					<input type="email" id="email" placeholder="Email" name="email" style="width:80%" required>
+				</div>
+				<div class="name-part" style="display: flex;
+						  flex-direction: row;
+						  justify-content: space-between;
+						  align-items: center;
+						  margin-bottom:20px;">
+					<label for="phone">Téléphone :</label>
+					<input type="text" id="phone" name="phone" placeholder="Téléphone" style="width:80%" required>
+				</div>
+				<div>
+					<div class="name-part" style="display: flex;
+						  flex-direction: row;
+						  justify-content: space-between;
+						  align-items: center;
+						  margin-bottom:20px;">
+						<label for="address">Adresse :</label>
+						<input type="text" id="address" name="address" placeholder="Adresse" style="width:80%" required>
 					</div>
-				</header>
-				<body>
-
-					<div class="container-paiement">
-						<h2>Confirmation du paiement</h2>
-						<form id="payment-form" action="/viderPanier" method="POST">
-							<div class="form-group"  >
-								<label for="card-number">Numéro de Carte:</label>
-								<input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
-							</div>
-							<div class="form-group">
-								<label for="card-holder">Titulaire de la Carte:</label>
-								<input type="text" id="card-holder" placeholder="Nom Complet" required>
-							</div>
-							<div class="form-group">
-								<label for="expiry-date">Date d'Expiration:</label>
-								<select id="month_expiration" name="month">
-									{% for month in 1..12 %}
-										<option>{{ month }}</option>
-									{% endfor %}	
-								</select>
-								<select id="year_expiration" name="year">
-									{% for year in 2022..2070 %}
-										<option>{{ year }}</option>
-									{% endfor %}
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="cvv">CVV:</label>
-								<input type="text" id="cvv" placeholder="123" required>
-							</div>
-							<div class="input-paiement">
-								<label for="amount">Montant à payer</label>
-								<input type="text" id="amount" name="amount" value="{{ app.request.query.get('amount') }}" readonly><br><br>
-							</div>
-							<button type="submit">Valider le Paiement</button>
-						</form>
+					<div class="name-part" style="display: flex;
+						  flex-direction: row;
+						  justify-content: space-between;
+						  align-items: center;
+						  margin-bottom:20px;">
+						<input type="text" id="city" name="city" placeholder="Ville" style="width:65%" required>
+						<input type="text" id="cp" name="cp" placeholder="Code Postal" style="width:25%" required>
 					</div>
-				</body>
+				</div>
+				<div class="form-group">
+					<label for="card-number">Numéro de Carte :</label>
+					<input type="text" id="card-number" name="cardNumber" placeholder="1234 5678 9012 3456" required>
+				</div>
+				<div class="form-group">
+					<label for="card-holder">Titulaire de la Carte :</label>
+					<input type="text" id="card-holder" name="cardHolder" placeholder="Nom Complet" required>
+				</div>
+				<div class="form-group">
+					<label for="expiry-date">Date d'Expiration :</label>
+					<select id="month_expiration" name="month">
+						{% for month in 1..12 %}
+							<option>{{ month }}</option>
+						{% endfor %}
+					</select>
+					<select id="year_expiration" name="year">
+						{% for year in 2022..2070 %}
+							<option>{{ year }}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="cvv">CVV :</label>
+					<input type="text" id="cvv" name="cvv" placeholder="123" required>
+				</div>
+				<div class="input-paiement">
+					<p style="font-size:20px;">Montant à payer : {{ app.request.query.get('amount') }}</p>
+					<input type="hidden" name="amount" value="{{ app.request.query.get('amount') }}">
+				</div>
+				<button type="submit">Valider le Paiement</button>
+			</form>
+		</div>
+	</body>
 {% endblock %}
