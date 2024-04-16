@@ -21,6 +21,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 use App\Entity\Catalogue\Livre;
 use App\Entity\Catalogue\Musique;
+use App\Entity\Catalogue\Film;
 
 class AdminController extends AbstractController
 {
@@ -32,7 +33,7 @@ class AdminController extends AbstractController
 		$this->logger = $logger;
 	}
 	
-    #[Route('/admin/musiques', name: 'adminMusiques')]
+    #[Route('/admin/musiques', name: '0')]
     public function adminMusiquesAction(Request $request): Response
     {
 		$query = $this->entityManager->createQuery("SELECT a FROM App\Entity\Catalogue\Musique a");
@@ -51,6 +52,106 @@ class AdminController extends AbstractController
             'articles' => $articles,
         ]);
     }
+
+	#[Route('/admin/films', name: 'adminFilms')]
+    public function adminFilmsAction(Request $request): Response
+    {
+		$query = $this->entityManager->createQuery("SELECT a FROM App\Entity\Catalogue\Film a");
+		$articles = $query->getResult();
+		return $this->render('admin.films.html.twig', [
+            'articles' => $articles,
+        ]);
+    }
+
+	#[Route('/admin/films/supprimer', name: 'adminFilmsSupprimer')]
+    public function adminFilmsSupprimerAction(Request $request): Response
+    {
+		$entityArticle = $this->entityManager->getReference("App\Entity\Catalogue\Article", $request->query->get("id"));
+		if ($entityArticle !== null) {
+			$this->entityManager->remove($entityArticle);
+			$this->entityManager->flush();
+		}
+		return $this->redirectToRoute("adminFilms") ;
+    }
+
+	#[Route('/admin/films/ajouter', name: 'adminFilmsAjouter')]
+    public function adminFilmsAjouterAction(Request $request): Response
+    {
+		$entity = new Film() ;
+		$formBuilder = $this->createFormBuilder($entity);
+		$formBuilder->add("titre", TextType::class) ;
+		$formBuilder->add("realisateur", TextType::class) ;
+		$formBuilder->add("prix", NumberType::class) ;
+		$formBuilder->add("disponibilite", IntegerType::class) ;
+		$formBuilder->add("image", TextType::class) ;
+		$formBuilder->add("dateDeParution", TextType::class) ;
+		$formBuilder->add("valider", SubmitType::class) ;
+		// Generate form
+		$form = $formBuilder->getForm();
+		
+		$form->handleRequest($request) ;
+		
+		if ($form->isSubmitted()) {
+			$entity = $form->getData() ;
+			$entity->setId(hexdec(uniqid()));
+			$this->entityManager->persist($entity);
+			$this->entityManager->flush();
+			return $this->redirectToRoute("adminFilms") ;
+		}
+		else {
+			return $this->render('admin.form.html.twig', [
+				'form' => $form->createView(),
+			]);
+		}
+    }
+
+	#[Route('/admin/films/modifier', name: 'adminFilmsModifier')]
+    public function adminFilmsModifierAction(Request $request): Response
+    {
+		$entity = $this->entityManager->getReference("App\Entity\Catalogue\Film", $request->query->get("id"));
+		if ($entity === null) 
+			$entity = $this->entityManager->getReference("App\Entity\Catalogue\Film", $request->request->get("id"));
+		if ($entity !== null) {
+			$formBuilder = $this->createFormBuilder($entity);
+			$formBuilder->add("id", HiddenType::class) ;
+			$formBuilder->add("titre", TextType::class) ;
+			$formBuilder->add("realisateur", TextType::class) ;
+			$formBuilder->add("prix", NumberType::class) ;
+			$formBuilder->add("disponibilite", IntegerType::class) ;
+			$formBuilder->add("image", TextType::class) ;
+			$formBuilder->add("dateDeParution", TextType::class) ;
+			$formBuilder->add("valider", SubmitType::class) ;
+			// Generate form
+			$form = $formBuilder->getForm();
+			
+			$form->handleRequest($request) ;
+			
+			if ($form->isSubmitted()) {
+				$entity = $form->getData() ;
+				$this->entityManager->persist($entity);
+				$this->entityManager->flush();
+				return $this->redirectToRoute("adminFilms") ;
+			}
+			else {
+				return $this->render('admin.form.html.twig', [
+					'form' => $form->createView(),
+				]);
+			}
+		}
+		else {
+			return $this->redirectToRoute("adminFilms") ;
+		}
+    }
+
+	#[Route('/admin/commandes', name: 'adminCommandes')]
+	public function adminCommandesAction(Request $request): Response
+	{
+		$query = $this->entityManager->createQuery("SELECT a FROM App\Entity\Commande\Commande a");
+		$commandes = $query->getResult();
+		return $this->render('admin.commandes.html.twig', [
+			'commandes' => $commandes,
+		]);
+	}
 	
     #[Route('/admin/musiques/supprimer', name: 'adminMusiquesSupprimer')]
     public function adminMusiquesSupprimerAction(Request $request): Response

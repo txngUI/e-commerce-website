@@ -17,6 +17,7 @@ class Film extends Article
 
     #[ORM\Column(length: 255, name: 'isbn')]
     private ?string $ISBN = null;
+    
     #[ORM\Column(length: 255, name: 'duree')]
     private ?DateInterval $duree = null;
 

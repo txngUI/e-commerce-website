@@ -1,0 +1,32 @@
+{% extends 'base.admin.html.twig' %}
+{% block body %}
+				<h1 class="wp-heading-inline">Administration de Amazaun</h1>
+				<table class="wp-list-table widefat">
+					{% for commande in commandes %}
+					{% if loop.first %}
+					<thead>
+						<tr>
+							<th>Prenom</th>
+							<th>Nom</th>
+							<th>Email</th>
+							<th>Téléphone</th>
+							<th>Adresse</th>
+							<th>Montant</th>
+						</tr>
+					</thead>
+					<tbody>
+					{% endif %}
+						<tr id="id_{{ commande.id }}">
+                            <td data-colname="Prenom">{{ commande.getPrenom() }}</td>
+                            <td data-colname="Nom">{{ commande.getNom() }}</td>
+                            <td data-colname="Email">{{ commande.getEmail() }}</td>
+                            <td data-colname="Téléphone">{{ commande.getTelephone()}}</td>
+                            <td data-colname="Adresse">{{ commande.getAdress() }}</td>
+                            <td data-colname="Montant">{{ commande.getMontant() }}</td>
+                        </tr>
+					{% if loop.last %}
+					</tbody>
+					{% endif %}
+					{% endfor %}
+				</table>
+{% endblock %}

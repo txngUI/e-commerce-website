@@ -17,18 +17,23 @@ use DeezerAPI\Search;
 use App\Entity\Catalogue\Livre;
 use App\Entity\Catalogue\Musique;
 use App\Entity\Catalogue\Piste;
+use App\Entity\User;
 
 use Psr\Log\LoggerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class AppFixtures extends Fixture
 {
 	protected $logger;
 
-    public function __construct(LoggerInterface $logger)
+    private UserPasswordHasherInterface $hasher;
+
+    public function __construct(LoggerInterface $logger, UserPasswordHasherInterface $hasher)
     {
         $this->logger = $logger;
+        $this->hasher = $hasher;
     }
-	
+
     public function load(ObjectManager $manager): void
     {
 		if (count($manager->getRepository("App\Entity\Catalogue\Article")->findAll()) == 0) {
@@ -224,6 +229,12 @@ class AppFixtures extends Fixture
 			$entityFilm->setDisponibilite(1);
 			$entityFilm->setImage("/images/inception.jpg");
 			$manager->persist($entityFilm);
+
+			$user = new User();
+            $user->setEmail("admin@admin.com");
+            $user->setRoles(["ROLE_ADMIN"]);
+            $user->setPassword($this->hasher->hashPassword($user, "admin"));
+            $manager->persist($user);
 
 			$manager->flush();
 		}
