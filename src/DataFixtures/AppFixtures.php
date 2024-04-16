@@ -152,7 +152,6 @@ class AppFixtures extends Fixture
 			$entityFilm->setId(562169459);
 			$entityFilm->setTitre("No country for old men");
 			$entityFilm->setRealisateur("Ethan Coen");
-			$entityFilm->setISBN("2212110685");
 			$entityFilm->SetDuree(new DateInterval('PT2H20M'));
 			$entityFilm->setDateDeParution("23/01/2008");
 			$entityFilm->setPrix("10.90");
@@ -165,7 +164,6 @@ class AppFixtures extends Fixture
 			$entityFilm->setId(56299454);
 			$entityFilm->setTitre("Django Unchained");
 			$entityFilm->setRealisateur("Quentin Tarentino");
-			$entityFilm->setISBN("1234567890");
 			$entityFilm->setDuree(new DateInterval('PT2H30M'));
 			$entityFilm->setDateDeParution("01/01/2022");
 			$entityFilm->setPrix("12.50");
@@ -178,7 +176,6 @@ class AppFixtures extends Fixture
 			$entityFilm->setId(56299321);
 			$entityFilm->setTitre("Interstellar");
 			$entityFilm->setRealisateur("Christopher Nolan");
-			$entityFilm->setISBN("2345678901");
 			$entityFilm->setDuree(new DateInterval('PT2H49M'));
 			$entityFilm->setDateDeParution("15/11/2014");
 			$entityFilm->setPrix("14.99");
@@ -191,7 +188,6 @@ class AppFixtures extends Fixture
 			$entityFilm->setId(56299526);
 			$entityFilm->setTitre("Blade Runner");
 			$entityFilm->setRealisateur("Ridley Scott");
-			$entityFilm->setISBN("3456789012");
 			$entityFilm->setDuree(new DateInterval('PT1H57M'));
 			$entityFilm->setDateDeParution("25/06/1982");
 			$entityFilm->setPrix("9.99");
@@ -204,7 +200,6 @@ class AppFixtures extends Fixture
 			$entityFilm->setId(56297412);
 			$entityFilm->setTitre("Blade Runner 2049");
 			$entityFilm->setRealisateur("Denis Villeneuve");
-			$entityFilm->setISBN("4567890123");
 			$entityFilm->setDuree(new DateInterval('PT2H44M'));
 			$entityFilm->setDateDeParution("06/10/2017");
 			$entityFilm->setPrix("16.99");
@@ -217,7 +212,6 @@ class AppFixtures extends Fixture
 			$entityFilm->setId(562994515);
 			$entityFilm->setTitre("Inception");
 			$entityFilm->setRealisateur("Christopher Nolan");
-			$entityFilm->setISBN("6789012345");
 			$entityFilm->setDuree(new DateInterval('PT2H28M'));
 			$entityFilm->setDateDeParution("08/07/2010");
 			$entityFilm->setPrix("13.75");

@@ -1649,6 +1649,27 @@ input[type="text"] {
   border-radius: 5px;
 }
 
+#article-details {
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  margin-bottom: 20px;
+  gap: 20vw;
+}
+
+#article-details img {
+  height: 400px;
+  object-fit:cover;
+  border-radius: 5px;
+}
+
+#article-details div {
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  margin-bottom: 10px;
+}
+
 @media (min-width:768px) {
  table.shop_table_responsive tbody tr td,
  table.shop_table_responsive tbody tr th {
