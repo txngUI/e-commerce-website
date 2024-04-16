@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+				<header id="header" class="col-full">
+					<div id="logo">
+						<h1 class="site-title">Amazaun</h1>
+					</div>
+					<nav id="site-navigation" class="main-navigation" role="navigation">
+						<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false">
+							<span>Menu</span>
+						</button>
+						<div class="menu">
+							<ul class="nav-menu">
+								<li class="page_item page-item-1">
+									<a href="/afficheRecherche">Rechercher
+										un article</a>
+								</li>
+								<li class="page_item page-item-2 current_page_item focus">
+									<a href="/accederAuPanier">Panier</a>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</header>
+				<div id="content" class="site-content" tabindex="-1">
+					<div class="col-full">
+						<div id="primary">
+							<main id="main" class="site-main" role="main">
+								<header class="woocommerce-products-header">
+									<h1 class="woocommerce-products-header__title page-title">Details sur le produit</h1>
+								</header>
+								<div id="article-details">	
+									<img src={{article.image}}>
+										<div>
+										<h2>{{article.titre}}</h2>
+										<p>Prix : {{article.prix}} €</p>
+										<p>{{article.disponibilite}} en stock</p>
+
+										{% if discriminatorColumnName == "livre" %}
+										<p>Auteur : {{article.auteur}}</p>
+										<p>Nombre de pages : {{article.nbPages}} pages</p>
+										<p>Date de parution : {{article.dateDeParution}}</p>
+										<p>ISBN : {{article.isbn}} </p>
+										{% endif %}
+
+										{% if discriminatorColumnName == "film" %}
+										<p>Réalisateur : {{article.realisateur}}</p>
+										<p>Durée : {{article.duree.h}} h {{article.duree.i}}</p>
+										<p>Date de parution : {{ article.dateDeParution }}</p>
+										{% endif %}
+
+										{% if discriminatorColumnName == "musique" %}
+										<p>Artiste : {{article.artiste}}</p>
+										<p>Date de parution : {{article.dateDeParution}}</p>
+										{% for piste in article.pistes %}
+										<p>{{piste.name}}</p>
+										{% endfor %}
+										{% endif %}
+										{% if article.disponibilite > 0 %}
+											<form action="/ajouterLigne" method="post">
+											<label style="color:black">Le produit est en stock</label>
+											<input type="hidden" name="id" value={{article.getId}}>
+											<input type="submit" value="Ajouter au panier">
+										</form>
+										{% else %}
+											<form action="/ajouterLigne" method="post">
+											<label>Le produit n'est pas en stock</label>
+											<input type="hidden" name="id" value={{article.id}}>
+											<input type="submit" value="Ajouter au panier" disabled>
+										{% endif %}
+										</div>
+								</div>
+							</main>
+						</div>
+					</div>
+				</div>
+							<!-- <p>{{discriminatorColumnName}}</p> -->
+{% endblock %}

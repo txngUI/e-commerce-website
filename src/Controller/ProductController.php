@@ -30,8 +30,14 @@ class ProductController extends AbstractController
 		if (!$session->isStarted())
 			$session->start() ;
 		$article = $this->entityManager->getReference("App\Entity\Catalogue\Article", $request->query->get("id"));
-		return $this->render('product.html.twig', [
-            'product' => $this->product,
+		
+		$classMetadata = $this->entityManager->getClassMetadata(get_class($article));
+		$articleType = $classMetadata->discriminatorValue;
+
+        // Passer les données à votre modèle Twig
+        return $this->render('product.html.twig', [
+            'article' => $article,
+            'discriminatorColumnName' => $articleType
         ]);
     }
 }

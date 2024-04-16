@@ -15,9 +15,6 @@ class Film extends Article
     #[ORM\Column(length: 255,name: 'realisateur')]
     private ?string $realisateur = null;
 
-    #[ORM\Column(length: 255, name: 'isbn')]
-    private ?string $ISBN = null;
-    
     #[ORM\Column(length: 255, name: 'duree')]
     private ?DateInterval $duree = null;
 
@@ -36,17 +33,7 @@ class Film extends Article
         return $this;
     }
 
-    public function getISBN(): ?string
-    {
-        return $this->ISBN;
-    }
 
-    public function setISBN(string $ISBN): static
-    {
-        $this->ISBN = $ISBN;
-
-        return $this;
-    }
 
     public function getDuree(): ?DateInterval
     {

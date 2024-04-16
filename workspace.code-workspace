@@ -6,7 +6,7 @@
 	],                                                  
 	"settings": {	                                    
 	    "intelephense.environment.includePaths": [	    
-	      	"C:\\Users\\tdav8\\symfony\\vendor"       
+	      	"C:\\Users\\crend\\symfony\\vendor"       
 	    ],                                       	    
 	}            	                                    
 }              	                                    
