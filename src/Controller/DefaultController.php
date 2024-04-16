@@ -32,4 +32,10 @@ class DefaultController extends AbstractController
         //]);
 		return $this->redirectToRoute('afficheRecherche');
     }
+
+    #[Route('/admin', name: 'admin')]
+    public function admin(Request $request, LoggerInterface $logger): Response
+    {
+        return $this->render('default/admin.html.twig');
+    }
 }

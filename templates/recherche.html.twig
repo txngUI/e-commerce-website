@@ -19,9 +19,19 @@
 							<button type="submit" class="searchBtn">Chercher</button>
 						</form>
 					</li>
-					<li class="page_item page-item-2">
-						<button onclick="window.location.href='/accederAuPanier'">Voir votre panier</button>
-					</li>
+
+					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+						<li class="page_item page-item-2">
+							<button onclick="window.location.href='/accederAuPanier'">Voir votre panier</button>
+						</li>
+					{% endif %}
+
+					{% if is_granted('ROLE_ADMIN') %}
+						<li class="page_item page-item-2">
+							<button onclick="window.location.href='/admin'">Administration</button>
+						</li>
+					{% endif %}
+
 					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 						<li class="page_item page-item-2">
 							<button onclick="window.location.href='/logout'">Se déconnecter</button>
@@ -53,11 +63,10 @@
 											<li class="product type-product">
 											{% endif %}
 										{% endif %}
-
 									<a class="woocommerce-LoopProduct-link woocommerce-loop-product__link"
-										href="/showProduct?id={{ article.id }}"> <img
+										href="/ajouterLigne?id={{ article.id }}"> <img
 											src="{{ article.image }}"
-											class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="poster_2_up" style="height: 200px;"
+											class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt="poster_2_up"
 											/>
 											<h3>{{ article.titre }}</h3> <span class="price"><ins>
 													<span class="amount">{{ article.prix }} €</span>

@@ -1,0 +1,17 @@
+{% extends 'base.admin.html.twig' %}
+{% block body %}
+	<h1 class="wp-heading-inline">Administration de Amazaun</h1>
+
+    <li class="page_item page-item-2">
+        <button onclick="window.location.href='/admin/livres'">Voir les livres</button>
+    </li>
+    <li class="page_item page-item-2">
+        <button onclick="window.location.href='/admin/films'">Voir les films</button>
+    </li>
+    <li class="page_item page-item-2">
+        <button onclick="window.location.href='/admin/musiques'">Voir les musiques</button>
+    </li>
+    <li class="page_item page-item-2">
+        <button onclick="window.location.href='/admin/commandes'">Voir les commandes</button>
+    </li>
+{% endblock %}
