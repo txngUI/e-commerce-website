@@ -152,6 +152,57 @@ class AdminController extends AbstractController
 			'commandes' => $commandes,
 		]);
 	}
+
+	#[Route('/admin/commandes/modifier', name: 'adminCommandesModifier')]
+    public function adminCommandesModifierAction(Request $request): Response
+    {
+		$entity = $this->entityManager->getReference("App\Entity\Commande\Commande", $request->query->get("id"));
+		if ($entity === null) 
+			$entity = $this->entityManager->getReference("App\Entity\Commande\Commande", $request->request->get("id"));
+		if ($entity !== null) {
+			$formBuilder = $this->createFormBuilder($entity);
+			$formBuilder->add("id", HiddenType::class) ;
+			$formBuilder->add("nom", TextType::class) ;
+			$formBuilder->add("prenom", TextType::class) ;
+			$formBuilder->add("email", TextType::class) ;
+			$formBuilder->add("adress", TextType::class) ;
+			$formBuilder->add("telephone", TextType::class) ;
+			$formBuilder->add("montant", FloatType::class) ;
+			$formBuilder->add("valider", SubmitType::class) ;
+
+			// Generate form
+			$form = $formBuilder->getForm();
+			
+			$form->handleRequest($request) ;
+			
+			if ($form->isSubmitted()) {
+				$entity = $form->getData() ;
+				$this->entityManager->persist($entity);
+				$this->entityManager->flush();
+				return $this->redirectToRoute("adminCommandes") ;
+			}
+			else {
+				return $this->render('admin.form.html.twig', [
+					'form' => $form->createView(),
+				]);
+			}
+		}
+		else {
+			return $this->redirectToRoute("adminCommandes") ;
+		}
+    }
+
+	#[Route('/admin/commandes/supprimer', name: 'adminCommandesSupprimer')]
+    public function adminCommandesSupprimerAction(Request $request): Response
+    {
+		$entityArticle = $this->entityManager->getReference("App\Entity\Commande\Commande", $request->query->get("id"));
+		if ($entityArticle !== null) {
+			$this->entityManager->remove($entityArticle);
+			$this->entityManager->flush();
+		}
+		return $this->redirectToRoute("adminCommandes") ;
+    }
+
 	
     #[Route('/admin/musiques/supprimer', name: 'adminMusiquesSupprimer')]
     public function adminMusiquesSupprimerAction(Request $request): Response
