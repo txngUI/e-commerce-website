@@ -23,7 +23,6 @@
                             <td data-colname="Téléphone">{{ commande.getTelephone()}}</td>
                             <td data-colname="Adresse">{{ commande.getAdress() }}</td>
                             <td data-colname="Montant">{{ commande.getMontant() }}</td>
-							<td><button onclick="window.location.href='/admin/commandes/modifier?id={{ commande.id }}'">Modifier</button></td>
 							<td><button data-iddelete="{{ commande.id }}">Supprimer</button></td>
                         </tr>
 					{% if loop.last %}

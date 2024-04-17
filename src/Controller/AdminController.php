@@ -105,44 +105,6 @@ class AdminController extends AbstractController
 		}
     }
 
-	#[Route('/admin/films/modifier', name: 'adminFilmsModifier')]
-    public function adminFilmsModifierAction(Request $request): Response
-    {
-		$entity = $this->entityManager->getReference("App\Entity\Catalogue\Film", $request->query->get("id"));
-		if ($entity === null) 
-			$entity = $this->entityManager->getReference("App\Entity\Catalogue\Film", $request->request->get("id"));
-		if ($entity !== null) {
-			$formBuilder = $this->createFormBuilder($entity);
-			$formBuilder->add("id", HiddenType::class) ;
-			$formBuilder->add("titre", TextType::class) ;
-			$formBuilder->add("realisateur", TextType::class) ;
-			$formBuilder->add("prix", NumberType::class) ;
-			$formBuilder->add("disponibilite", IntegerType::class) ;
-			$formBuilder->add("image", TextType::class) ;
-			$formBuilder->add("dateDeParution", TextType::class) ;
-			$formBuilder->add("valider", SubmitType::class) ;
-			// Generate form
-			$form = $formBuilder->getForm();
-			
-			$form->handleRequest($request) ;
-			
-			if ($form->isSubmitted()) {
-				$entity = $form->getData() ;
-				$this->entityManager->persist($entity);
-				$this->entityManager->flush();
-				return $this->redirectToRoute("adminFilms") ;
-			}
-			else {
-				return $this->render('admin.form.html.twig', [
-					'form' => $form->createView(),
-				]);
-			}
-		}
-		else {
-			return $this->redirectToRoute("adminFilms") ;
-		}
-    }
-
 	#[Route('/admin/commandes', name: 'adminCommandes')]
 	public function adminCommandesAction(Request $request): Response
 	{
@@ -167,7 +129,7 @@ class AdminController extends AbstractController
 			$formBuilder->add("email", TextType::class) ;
 			$formBuilder->add("adress", TextType::class) ;
 			$formBuilder->add("telephone", TextType::class) ;
-			$formBuilder->add("montant", FloatType::class) ;
+			$formBuilder->add("montant", NumberType::class) ;
 			$formBuilder->add("valider", SubmitType::class) ;
 
 			// Generate form
@@ -176,7 +138,7 @@ class AdminController extends AbstractController
 			$form->handleRequest($request) ;
 			
 			if ($form->isSubmitted()) {
-				$entity = $form->getData() ;
+				$entity = $form->getData();
 				$this->entityManager->persist($entity);
 				$this->entityManager->flush();
 				return $this->redirectToRoute("adminCommandes") ;
