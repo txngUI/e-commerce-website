@@ -9,8 +9,14 @@ Feature: Search
     Given I am on "http://127.0.0.1:8000"
     And I change window size to "1200" x "800"
     And I wait for "1" s
-    And I press on "Se connecter"
+    And I press "Se connecter"
     And I wait for "1" s
     And I fill in "_username" with "admin@admin.com"
     And I fill in "_password" with "admin"
-    And I press on "Se connecter"
+    And I press "Sign in"
+    And I wait for "1" s
+    And I follow "Le seigneur des anneaux"
+    And I wait for "1" s
+    And I press "Ajouter au panier"
+    And I wait for "1" s
+    And I follow "Effectuer la commande"
