@@ -15,9 +15,11 @@
 									<a href="/afficheRecherche">Rechercher
 										un article</a>
 								</li>
-								<li class="page_item page-item-2 current_page_item focus">
-									<a href="/accederAuPanier">Panier</a>
-								</li>
+								{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+									<li class="page_item page-item-2">
+										<button onclick="window.location.href='/accederAuPanier'">Voir votre panier</button>
+									</li>
+								{% endif %}
 							</ul>
 						</div>
 					</nav>
@@ -56,17 +58,38 @@
 										<p>{{piste.name}}</p>
 										{% endfor %}
 										{% endif %}
-										{% if article.disponibilite > 0 %}
-											<form action="/ajouterLigne?id={{ article.id }}" method="post">
-											<label style="color:black">Le produit est en stock</label>
-											<input type="hidden" name="id" value={{article.getId}}>
-											<input type="submit" value="Ajouter au panier">
-										</form>
+										{% if article.disponibilite > 0 %}									
+												{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+													<form action="/ajouterLigne?id={{ article.id }}" method="post">
+														<label style="color:black">Le produit est en stock</label>
+														<input type="hidden" name="id" value={{article.getId}}>
+														<input type="submit" value="Ajouter au panier">
+													</form>
+												{% else %}
+													<form action="/login" method="post">
+														<input type="hidden" name="_username" value="">
+														<input type="hidden" name="error" value="">
+														<label style="color:black">Le produit est en stock</label>
+														<input type="hidden" name="id" value={{article.getId}}>
+														<input type="submit" value="Ajouter au panier">
+													</form>
+												{% endif %}
 										{% else %}
-											<form action="/ajouterLigne?id={{ article.id }}" method="post">
-											<label>Le produit n'est pas en stock</label>
-											<input type="hidden" name="id" value={{article.id}}>
-											<input type="submit" value="Ajouter au panier" disabled>
+											{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+												<form action="/ajouterLigne?id={{ article.id }}" method="post">
+													<label style="color:black">Le produit n'est pas en stock</label>
+													<input type="hidden" name="id" value={{article.getId}}>
+													<input type="submit" value="Ajouter au panier">
+												</form>
+											{% else %}
+												<form action="/login" method="post">
+													<input type="hidden" name="_username" value="">
+													<input type="hidden" name="error" value="">
+													<label style="color:black">Le produit n'est pas en stock</label>
+													<input type="hidden" name="id" value={{article.getId}}>
+													<input type="submit" value="Ajouter au panier">
+												</form>
+											{% endif %}
 										{% endif %}
 										</div>
 								</div>
