@@ -3,6 +3,7 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+    <div id="content" class="site-content" tabindex="-1" style="padding-top:15vh;">
     <button onclick="window.location.href='/register'">S'inscrire</button>
     <form method="post">
         {% if error %}
@@ -40,4 +41,5 @@
             Sign in
         </button>
     </form>
+    </div>
 {% endblock %}
