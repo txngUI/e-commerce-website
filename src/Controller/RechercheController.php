@@ -50,4 +50,46 @@ class RechercheController extends AbstractController
             'articles' => $articles,
         ]);
     }
+
+	#[Route('/afficherLivres', name: 'afficherLivres')]
+    public function afficherLivresAction(Request $request): Response
+    {
+		$query = $this->entityManager->createQuery("SELECT a FROM App\Entity\Catalogue\Livre a "
+												  ." where a.titre like :motCle");
+												  
+		$query->setParameter("motCle", "%".$request->query->get("motCle")."%");
+		
+		$articles = $query->getResult();
+		return $this->render('recherche.html.twig', [
+            'articles' => $articles,
+        ]);
+    }
+
+	#[Route('/afficherFilms', name: 'afficherFilms')]
+    public function afficherFilmsAction(Request $request): Response
+    {
+		$query = $this->entityManager->createQuery("SELECT a FROM App\Entity\Catalogue\Film a "
+												  ." where a.titre like :motCle");
+												  
+		$query->setParameter("motCle", "%".$request->query->get("motCle")."%");
+		
+		$articles = $query->getResult();
+		return $this->render('recherche.html.twig', [
+            'articles' => $articles,
+        ]);
+    }
+
+	#[Route('/afficherMusiques', name: 'afficherMusiques')]
+    public function afficherMusiquesAction(Request $request): Response
+    {
+		$query = $this->entityManager->createQuery("SELECT a FROM App\Entity\Catalogue\Musique a "
+												  ." where a.titre like :motCle");
+												  
+		$query->setParameter("motCle", "%".$request->query->get("motCle")."%");
+		
+		$articles = $query->getResult();
+		return $this->render('recherche.html.twig', [
+            'articles' => $articles,
+        ]);
+    }
 }
