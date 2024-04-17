@@ -3,48 +3,6 @@
 	<link rel="stylesheet" id="jplayer-css" href="/js/jplayer-2.9.2/skin/blue.monday/css/jplayer.blue.monday.css" type="text/css"/>
 {% endblock %}
 {% block body %}
-	<header id="header" class="col-full" style="position:fixed; z-index:999; width:100%; height:15vh;">
-		<div id="logo">
-			<h1 class="site-title" style="margin-right:50px;display:flex;align-items:center;">Amazaun</h1>
-		</div>
-		<nav id="site-navigation" class="main-navigation" role="navigation">
-			<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false">
-				<span>Menu</span>
-			</button>
-			<div class="menu">
-				<ul class="nav-menu">
-					<li class="page_item page-item-1 current_page_item focus">
-						<form method="get" class="formSearch" action="/afficheRechercheParMotCle">
-							<input name="motCle" placeholder="Rechercher un article" style="margin-right: 10px;"/>
-							<button type="submit" class="searchBtn">Chercher</button>
-						</form>
-					</li>
-
-					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-						<li class="page_item page-item-2">
-							<button onclick="window.location.href='/accederAuPanier'">Voir votre panier</button>
-						</li>
-					{% endif %}
-
-					{% if is_granted('ROLE_ADMIN') %}
-						<li class="page_item page-item-2">
-							<button onclick="window.location.href='/admin'">Administration</button>
-						</li>
-					{% endif %}
-
-					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-						<li class="page_item page-item-2">
-							<button onclick="window.location.href='/logout'">Se déconnecter</button>
-						</li>
-					{% else %}
-						<li class="page_item page-item-2">
-							<button onclick="window.location.href='/login'">Se connecter</button>
-						</li>
-					{% endif %}
-				</ul>
-			</div>
-		</nav>
-	</header>
 	<div id="content" class="site-content" tabindex="-1" style="padding-top:15vh;">
 		<div class="col-full">
 			<div id="primary">
