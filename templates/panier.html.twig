@@ -1,28 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-				<header id="header" class="col-full">
-					<div id="logo">
-						<h1 class="site-title" style="margin-right:50px;display:flex;align-items:center;">Amazaun</h1>
-					</div>
-					<nav id="site-navigation" class="main-navigation" role="navigation">
-						<button class="menu-toggle" aria-controls="site-navigation" aria-expanded="false">
-							<span>Menu</span>
-						</button>
-						<div class="menu">
-							<ul class="nav-menu">
-								<li class="page_item page-item-1 current_page_item focus" >
-									<form method="get" class="formSearch" action="/afficheRechercheParMotCle">
-										<input name="motCle" placeholder="Rechercher un article" style="margin-right: 10px;"/>
-										<button type="submit" class="searchBtn">Chercher</button>
-									</form>
-								</li>
-								<li class="page_item page-item-2">
-								<button onclick="window.location.href='/accederAuPanier'">Voir votre panier</button>
-							</ul>
-						</div>
-					</nav>
-				</header>
-				<div id="content" class="site-content">
+				
+				<div id="content" class="site-content" tabindex="-1" style="padding-top:15vh;">
 					<div class="col-full">
 						<header class="entry-header">
 							<h1 class="entry-title">Panier</h1>
@@ -70,7 +49,7 @@
 											</tr>
 											{% endfor %}
 											<tr>
-												<td class="actions" colspan="6"><input class="button"
+												<td class="actions" colspan="6"><input class="button" 
 													type="submit" value="Mise à jour du panier" name="update_cart" /></td>
 											</tr>
 										</tbody>

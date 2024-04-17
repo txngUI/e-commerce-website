@@ -3,13 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Welcome!</title>
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <title>Amazaun</title>
         <title>{% block title %}Welcome!{% endblock %}</title>
 		<link rel="stylesheet" id="storefront-style-css" href="/css/themes/storefront/style.css" type="text/css" />
 		<link rel="stylesheet" id="storefront-woocommerce-style-css" href="/css/themes/storefront/assets/css/woocommerce/woocommerce.css" type="text/css" />
 		<link rel="stylesheet" id="storefront-icons-css" href="/css/themes/storefront/assets/css/base/icons.css" type="text/css" />
+		<link rel="icon" type="image/ico" href="images\icon.ico">
 		<style id="storefront-style-inline-css" type="text/css">
+		
 		button.menu-toggle,
 		button.menu-toggle:hover,
 		.handheld-navigation .dropdown-toggle {
@@ -39,7 +40,6 @@
 		</style>
         {% block stylesheets %}
 		{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body style='background-color:#ced382'>
 		<header id="header" class="col-full" style="position:fixed; z-index:999; width:100%; height:12vh; background-color:#242424;">
@@ -56,11 +56,13 @@
 				<ul class="nav-menu">
 					<li class="page_item page-item-1 current_page_item focus">
 						<form method="get" class="formSearch" action="/afficheRechercheParMotCle">
-							<input name="motCle" placeholder="Rechercher un article" style="margin-right: 10px;"/>
+							<input name="motCle" placeholder="Rechercher un article"/>
 							<button type="submit" class="searchBtn">Chercher</button>
 						</form>
 					</li>
 
+
+					<div style="display:flex; flex-direction:row; align-items:right; gap: 20px;">
 					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 						<li class="page_item page-item-2">
 							<button onclick="window.location.href='/accederAuPanier'">Voir votre panier</button>
@@ -82,6 +84,7 @@
 							<button onclick="window.location.href='/login'">Se connecter</button>
 						</li>
 					{% endif %}
+					</div>
 				</ul>
 			</div>
 		</nav>
