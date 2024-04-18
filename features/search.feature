@@ -6,7 +6,7 @@ Feature: Search
 
   @javascript
   Scenario: Searching for a page that does exist
-    Given I am on "http://127.0.0.1:8000"
+    Given I am on "http://localhost:8000"
     And I change window size to "1200" x "800"
     And I wait for "1" s
     And I press on "Se connecter"

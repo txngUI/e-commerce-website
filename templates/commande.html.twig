@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-	<body>
+		<div id="content" class="site-content" tabindex="-1" style="padding-top:15vh;">
 		<div class="container-paiement">
 			<h2>Confirmation du paiement</h2>
 			<form id="payment-form" action="/enregistrerCommande" method="POST">
@@ -77,5 +77,4 @@
 				<button type="submit">Valider le Paiement</button>
 			</form>
 		</div>
-	</body>
 {% endblock %}
